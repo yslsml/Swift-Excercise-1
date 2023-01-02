@@ -18,10 +18,12 @@ class ViewController: UIViewController {
         print("\nInitial array: \(nums)")
         print("Sum of integer parts equals to \(sumOfIntegerParts)")
         print("Sum of fractional parts equals to \(sumOfFractionalParts)")
+        print("\nSum of integer parts equals to \(getSumOfIntegerPartsUsingModf(array: nums)) (using modf)")
+        print("Sum of fractional parts equals to \(getSumOfFractionalPartsUsingModf(array: nums)) (using modf)")
         
         let evenNumber = 4
         let oddNumber = 5
-        print("Is number \(evenNumber) even? \(isEvenNumber(number: evenNumber))")
+        print("\nIs number \(evenNumber) even? \(isEvenNumber(number: evenNumber))")
         print("Is number \(oddNumber) even? \(isEvenNumber(number: oddNumber))")
     }
     
@@ -46,6 +48,22 @@ class ViewController: UIViewController {
             return true
         }
         return false
+    }
+    
+    func getSumOfIntegerPartsUsingModf(array: [Double]) -> Int {
+        var sum = 0
+        for num in array {
+            sum += Int(modf(num).0)
+        }
+        return sum
+    }
+    
+    func getSumOfFractionalPartsUsingModf(array: [Double]) -> Double {
+        var sum: Double = 0
+        for num in array {
+            sum += modf(num).1
+        }
+        return sum
     }
 }
 
